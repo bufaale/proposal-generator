@@ -178,9 +178,11 @@ export interface Database {
         Relationships: [];
       };
     };
+    /* eslint-disable @typescript-eslint/no-empty-object-type */
     Views: {};
     Functions: {};
     Enums: {};
     CompositeTypes: {};
+    /* eslint-enable @typescript-eslint/no-empty-object-type */
   };
 }
