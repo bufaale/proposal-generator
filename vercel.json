@@ -5,8 +5,17 @@
     "src/app/api/stripe/webhook/route.ts": {
       "maxDuration": 30
     },
-    "src/app/api/chat/route.ts": {
+    "src/app/api/proposals/generate/route.ts": {
       "maxDuration": 60
+    },
+    "src/app/api/proposals/regenerate-section/route.ts": {
+      "maxDuration": 30
+    },
+    "src/app/api/proposals/*/pricing-suggest/route.ts": {
+      "maxDuration": 30
+    },
+    "src/app/api/proposals/*/pdf/route.ts": {
+      "maxDuration": 30
     }
   }
 }
