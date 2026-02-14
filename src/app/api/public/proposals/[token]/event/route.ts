@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { headers } from "next/headers";
 import { z } from "zod";
+import { notifyProposalEvent } from "@/lib/email/proposal-notifications";
 
 function createPublicClient() {
   return createServerClient(
@@ -24,7 +25,7 @@ export async function POST(
 
   const { data: proposal } = await supabase
     .from("proposals")
-    .select("id, status, user_id")
+    .select("id, status, user_id, title")
     .eq("share_token", token)
     .single();
 
@@ -66,6 +67,21 @@ export async function POST(
       .from("proposals")
       .update({ status: "viewed" })
       .eq("id", proposal.id);
+  }
+
+  // Fire-and-forget email notification
+  const { data: ownerProfile } = await supabase
+    .from("profiles")
+    .select("email")
+    .eq("id", proposal.user_id)
+    .single();
+
+  if (ownerProfile?.email) {
+    void notifyProposalEvent(
+      ownerProfile.email,
+      proposal.title,
+      parsed.data.event_type,
+    );
   }
 
   return NextResponse.json({ success: true });

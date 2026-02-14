@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { z } from "zod";
+import { notifyProposalEvent } from "@/lib/email/proposal-notifications";
 
 function createPublicClient() {
   return createServerClient(
@@ -25,7 +26,7 @@ export async function POST(
 
   const { data: proposal } = await supabase
     .from("proposals")
-    .select("id")
+    .select("id, user_id, title")
     .eq("share_token", token)
     .single();
 
@@ -61,6 +62,20 @@ export async function POST(
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  // Fire-and-forget email notification
+  const { data: ownerProfile } = await supabase
+    .from("profiles")
+    .select("email")
+    .eq("id", proposal.user_id)
+    .single();
+
+  if (ownerProfile?.email) {
+    void notifyProposalEvent(ownerProfile.email, proposal.title, "commented", {
+      author_name: parsed.data.author_name,
+      comment: parsed.data.content,
+    });
   }
 
   return NextResponse.json({ comment });
