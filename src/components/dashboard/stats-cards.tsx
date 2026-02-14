@@ -1,38 +1,43 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MessageSquare, CreditCard, Zap, Users } from "lucide-react";
+import { FileText, Send, TrendingUp, CheckCircle } from "lucide-react";
 
 interface StatsCardsProps {
-  proposalsThisMonth: number;
-  planName: string;
-  planPrice: number;
-  status: string;
+  totalProposals: number;
+  sentPending: number;
+  winRate: number;
+  accepted: number;
 }
 
-export function StatsCards({ proposalsThisMonth, planName, planPrice, status }: StatsCardsProps) {
+export function StatsCards({
+  totalProposals,
+  sentPending,
+  winRate,
+  accepted,
+}: StatsCardsProps) {
   const stats = [
     {
-      title: "Proposals",
-      value: proposalsThisMonth.toLocaleString(),
-      description: "This month",
-      icon: MessageSquare,
+      title: "Total Proposals",
+      value: totalProposals.toLocaleString(),
+      description: "All time",
+      icon: FileText,
     },
     {
-      title: "Current Plan",
-      value: planName,
-      description: planPrice > 0 ? `$${planPrice}/month` : "Free tier",
-      icon: CreditCard,
+      title: "Sent / Pending",
+      value: sentPending.toLocaleString(),
+      description: "Awaiting response",
+      icon: Send,
     },
     {
-      title: "Status",
-      value: status === "active" ? "Active" : "Free",
-      description: status === "active" ? "Subscription active" : "No active subscription",
-      icon: Zap,
+      title: "Win Rate",
+      value: `${winRate}%`,
+      description: "Accepted vs. total decided",
+      icon: TrendingUp,
     },
     {
-      title: "API Calls",
-      value: "—",
-      description: "Coming soon",
-      icon: Users,
+      title: "Accepted",
+      value: accepted.toLocaleString(),
+      description: "Won proposals",
+      icon: CheckCircle,
     },
   ];
 
