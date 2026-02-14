@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -43,13 +43,24 @@ const industries = [
 ] as const;
 
 export default function NewProposalPage() {
+  return (
+    <Suspense>
+      <NewProposalContent />
+    </Suspense>
+  );
+}
+
+function NewProposalContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [step, setStep] = useState<WizardStep>("brief");
 
   // Brief form state
   const [projectDescription, setProjectDescription] = useState("");
   const [clientId, setClientId] = useState<string>("none");
-  const [templateId, setTemplateId] = useState<string>("none");
+  const [templateId, setTemplateId] = useState<string>(
+    searchParams.get("template_id") ?? "none",
+  );
   const [budgetRange, setBudgetRange] = useState("");
   const [timeline, setTimeline] = useState("");
   const [specialRequirements, setSpecialRequirements] = useState("");
