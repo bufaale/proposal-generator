@@ -2,17 +2,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MessageSquare, CreditCard, Zap, Users } from "lucide-react";
 
 interface StatsCardsProps {
-  aiGenerations: number;
+  proposalsThisMonth: number;
   planName: string;
   planPrice: number;
   status: string;
 }
 
-export function StatsCards({ aiGenerations, planName, planPrice, status }: StatsCardsProps) {
+export function StatsCards({ proposalsThisMonth, planName, planPrice, status }: StatsCardsProps) {
   const stats = [
     {
-      title: "AI Generations",
-      value: aiGenerations.toLocaleString(),
+      title: "Proposals",
+      value: proposalsThisMonth.toLocaleString(),
       description: "This month",
       icon: MessageSquare,
     },

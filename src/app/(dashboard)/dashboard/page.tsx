@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { StatsCards } from "@/components/dashboard/stats-cards";
-import { pricingPlans } from "@/lib/stripe/plans";
+import { getUserPlan } from "@/lib/stripe/plans";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -9,22 +9,22 @@ export default async function DashboardPage() {
   // Fetch profile for plan info
   const { data: profile } = await supabase
     .from("profiles")
-    .select("subscription_plan, subscription_status")
+    .select("*")
     .eq("id", user!.id)
     .single();
 
-  // Fetch AI usage count this month
+  // Fetch proposals count this month
   const startOfMonth = new Date();
   startOfMonth.setDate(1);
   startOfMonth.setHours(0, 0, 0, 0);
 
-  const { count: aiCount } = await supabase
-    .from("ai_usage")
+  const { count: proposalCount } = await supabase
+    .from("proposals")
     .select("*", { count: "exact", head: true })
     .eq("user_id", user!.id)
     .gte("created_at", startOfMonth.toISOString());
 
-  const plan = pricingPlans.find((p) => p.id === profile?.subscription_plan) || pricingPlans[0];
+  const plan = getUserPlan(profile?.subscription_plan ?? null);
 
   return (
     <div className="space-y-8">
@@ -35,7 +35,7 @@ export default async function DashboardPage() {
         </p>
       </div>
       <StatsCards
-        aiGenerations={aiCount ?? 0}
+        proposalsThisMonth={proposalCount ?? 0}
         planName={plan.name}
         planPrice={plan.price.monthly}
         status={profile?.subscription_status ?? "free"}
