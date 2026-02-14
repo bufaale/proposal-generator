@@ -7,34 +7,34 @@ import {
 
 const faqItems = [
   {
-    question: "What tech stack does this use?",
+    question: "How does AI generation work?",
     answer:
-      "This boilerplate is built with Next.js 16, TypeScript, Tailwind CSS 4, shadcn/ui, Supabase (PostgreSQL + Auth), Stripe for payments, Vercel AI SDK for AI features, and Resend for transactional emails. Everything is pre-configured and ready to go.",
+      "Describe your project details — scope, timeline, pricing — and our AI (powered by Claude) generates a professional proposal with compelling copy, structured sections, and clear deliverables. You can edit every part before sending.",
   },
   {
-    question: "Is this a one-time purchase?",
+    question: "Can I customize the proposals?",
     answer:
-      "Yes, pay once and get lifetime access including all future updates. No recurring fees, no hidden costs. You own the code forever.",
+      "Absolutely. Every proposal is fully editable after generation. Customize the content, add or remove sections, change the order, and apply your brand colors and logo. Pro and Business plans unlock all templates and full brand customization.",
   },
   {
-    question: "Can I use this for multiple projects?",
+    question: "How does the client portal work?",
     answer:
-      "Yes, the license allows unlimited projects for both personal and commercial use. Build as many SaaS products as you want with a single purchase.",
+      "Each proposal gets a unique, shareable link. Your clients can view the proposal in a branded portal — no login required. On the full portal (Pro+), clients can leave comments, ask questions, and accept the proposal directly online.",
   },
   {
-    question: "Do I need to know AI/ML to use this?",
+    question: "What file formats can I export?",
     answer:
-      "No, the AI features are pre-configured and ready to use out of the box. Just add your API keys and start building. The Vercel AI SDK handles all the complexity for you.",
+      "All plans include PDF export with your branding. The exported PDF includes your logo, company colors, and all proposal sections in a clean, professional layout ready to share via email or print.",
   },
   {
-    question: "What kind of support is included?",
+    question: "What happens when I reach my limit?",
     answer:
-      "You get access to GitHub issues for bug reports, a Discord community for questions and discussions, and detailed documentation covering every feature. We're here to help you ship.",
+      "On the Free plan, you can create up to 2 proposals per month and manage 5 clients. Once you hit the limit, you can upgrade to Pro (20 proposals/month) or Business (unlimited) at any time. Your existing proposals are never deleted.",
   },
   {
-    question: "Can I request new features?",
+    question: "Is my data secure?",
     answer:
-      "Absolutely! We actively develop based on community feedback. Feature requests are welcome on GitHub, and popular requests get prioritized in our roadmap.",
+      "Yes. All data is stored in a secure PostgreSQL database with row-level security (RLS). Client portal links are unique and unguessable. We never share your data with third parties, and all connections are encrypted with TLS.",
   },
 ];
 
@@ -45,7 +45,7 @@ export function FAQ() {
         <div className="text-center">
           <h2 className="text-3xl font-bold">Frequently asked questions</h2>
           <p className="text-muted-foreground mt-4 mx-auto max-w-2xl">
-            Everything you need to know about the boilerplate.
+            Everything you need to know about ProposalAI.
           </p>
         </div>
         <div className="mt-12">

@@ -1,14 +1,13 @@
 import {
-  Bot,
-  Shield,
-  CreditCard,
-  Mail,
-  LayoutDashboard,
-  Rocket,
+  Sparkles,
+  LayoutTemplate,
+  Globe,
+  FileDown,
+  BarChart3,
+  Users,
 } from "lucide-react";
 import {
   Card,
-  CardContent,
   CardHeader,
   CardTitle,
   CardDescription,
@@ -16,40 +15,40 @@ import {
 
 const features = [
   {
-    icon: Bot,
-    title: "AI-Powered",
+    icon: Sparkles,
+    title: "AI-Powered Generation",
     description:
-      "Vercel AI SDK with multi-provider streaming. Claude, GPT, and more — switch with one line.",
+      "Describe your project and let AI craft a professional proposal in seconds. Powered by Claude for natural, compelling copy.",
   },
   {
-    icon: Shield,
-    title: "Authentication",
+    icon: LayoutTemplate,
+    title: "Professional Templates",
     description:
-      "Supabase Auth with email, Google, and GitHub. Protected routes and session management built-in.",
+      "Choose from curated templates designed for web development, design, marketing, and more. Customize every detail.",
   },
   {
-    icon: CreditCard,
-    title: "Payments",
+    icon: Globe,
+    title: "Client Portal",
     description:
-      "Stripe subscriptions, one-time payments, and usage-based billing. Webhooks synced to your database.",
+      "Share proposals via a branded portal link. Clients can view, comment, and accept proposals online.",
   },
   {
-    icon: Mail,
-    title: "Email",
+    icon: FileDown,
+    title: "PDF Export",
     description:
-      "Resend for transactional emails. Welcome emails, password resets, and subscription confirmations.",
+      "Download polished PDF proposals ready to send. Branded with your logo, colors, and company details.",
   },
   {
-    icon: LayoutDashboard,
-    title: "Dashboard",
+    icon: BarChart3,
+    title: "Engagement Tracking",
     description:
-      "Beautiful sidebar layout with dark mode. Responsive design that works on every screen.",
+      "Know when clients open your proposals, which sections they read, and how long they spend reviewing.",
   },
   {
-    icon: Rocket,
-    title: "Deploy in Minutes",
+    icon: Users,
+    title: "CRM Lite",
     description:
-      "One-click deploy to Vercel. Environment variables template and setup guide included.",
+      "Manage your clients and proposals in one place. Track deals, follow up on pending proposals, and close more work.",
   },
 ];
 
@@ -59,11 +58,11 @@ export function Features() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
           <h2 className="text-3xl font-bold">
-            Everything you need to ship fast
+            Everything you need to win more clients
           </h2>
           <p className="text-muted-foreground mt-4 mx-auto max-w-2xl">
-            Pre-configured integrations and components so you can focus on what
-            matters — your product.
+            From AI-generated content to client tracking, ProposalAI helps
+            freelancers create proposals that close deals.
           </p>
         </div>
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -79,7 +78,6 @@ export function Features() {
                 <CardTitle>{feature.title}</CardTitle>
                 <CardDescription>{feature.description}</CardDescription>
               </CardHeader>
-              <CardContent />
             </Card>
           ))}
         </div>

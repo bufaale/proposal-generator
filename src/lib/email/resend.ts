@@ -16,7 +16,7 @@ export async function sendWelcomeEmail(email: string, name: string) {
   return resend.emails.send({
     from: FROM,
     to: email,
-    subject: "Welcome to SaaS AI Boilerplate!",
+    subject: "Welcome to ProposalAI!",
     html: `
       <h1>Welcome, ${escapeHtml(name || "there")}!</h1>
       <p>Thanks for signing up. You're all set to start building amazing things.</p>

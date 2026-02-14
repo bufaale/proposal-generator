@@ -7,24 +7,24 @@ import {
 const testimonials = [
   {
     quote:
-      "Saved me weeks of boilerplate work. The AI integration alone is worth the price.",
-    name: "Sarah Chen",
-    role: "Founder at TechFlow",
-    initials: "SC",
+      "Saved me hours on proposal writing. I used to spend a full day on each one — now it takes 15 minutes.",
+    name: "Sarah Mitchell",
+    role: "Web Developer",
+    initials: "SM",
   },
   {
     quote:
-      "Finally, a boilerplate that includes proper Stripe webhooks and subscription management.",
-    name: "Marcus Rodriguez",
-    role: "Indie Hacker",
-    initials: "MR",
+      "My win rate went up 40% since using ProposalAI. The AI suggestions and professional templates really make a difference.",
+    name: "Mark Stevens",
+    role: "Designer",
+    initials: "MS",
   },
   {
     quote:
-      "The dark mode and shadcn/ui setup is chef's kiss. Best DX I've experienced.",
-    name: "Alex Kim",
-    role: "Full-Stack Developer",
-    initials: "AK",
+      "The client portal is a game-changer. Clients love being able to review and accept proposals online.",
+    name: "Lisa Chen",
+    role: "Marketing Consultant",
+    initials: "LC",
   },
 ];
 
@@ -33,9 +33,9 @@ export function Testimonials() {
     <section className="bg-muted/40 py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
-          <h2 className="text-3xl font-bold">Loved by developers</h2>
+          <h2 className="text-3xl font-bold">Loved by freelancers</h2>
           <p className="text-muted-foreground mt-4 mx-auto max-w-2xl">
-            See what builders are saying about the boilerplate.
+            See what freelancers and consultants are saying about ProposalAI.
           </p>
         </div>
         <div className="mt-16 grid gap-8 md:grid-cols-3">
