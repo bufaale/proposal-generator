@@ -9,6 +9,9 @@ export const config = {
   matcher: [
     "/dashboard/:path*",
     "/settings/:path*",
+    "/login",
+    "/signup",
     "/auth/:path*",
+    "/api/stripe/:path*",
   ],
 };
