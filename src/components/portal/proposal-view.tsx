@@ -33,14 +33,23 @@ export function ProposalView({
     <div className="mx-auto max-w-3xl">
       {/* Header / Cover */}
       <div className="mb-8 rounded-xl bg-white p-8 shadow-sm dark:bg-gray-900 sm:p-12">
-        {brand_settings?.logo_url && (
-          <div className="mb-6">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={brand_settings.logo_url}
-              alt="Company logo"
-              className="h-12 w-auto"
-            />
+        {(brand_settings?.logo_url || brand_settings?.company_name) && (
+          <div className="mb-6 flex items-center gap-3">
+            {brand_settings?.logo_url && (
+              <>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={brand_settings.logo_url}
+                  alt="Company logo"
+                  className="h-12 w-auto"
+                />
+              </>
+            )}
+            {brand_settings?.company_name && (
+              <span className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+                {brand_settings.company_name}
+              </span>
+            )}
           </div>
         )}
         <h1
@@ -213,7 +222,7 @@ export function ProposalView({
 
       {/* Footer */}
       <div className="mb-8 text-center text-xs text-gray-300 dark:text-gray-600">
-        Generated with ProposalAI
+        {brand_settings?.company_name || "Generated with ProposalAI"}
       </div>
     </div>
   );

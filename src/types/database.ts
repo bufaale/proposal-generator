@@ -77,6 +77,7 @@ export interface PricingData {
 
 export interface BrandSettings {
   logo_url?: string;
+  company_name?: string;
   primary_color?: string;
   secondary_color?: string;
 }

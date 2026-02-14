@@ -62,12 +62,21 @@ export default async function ProposalPreviewPage({
       <div className="mx-auto max-w-4xl px-8 py-12">
         {/* Header with brand */}
         <div className="mb-12 border-b-4 pb-8" style={{ borderColor: primaryColor }}>
-          {brand?.logo_url && (
-            <img
-              src={brand.logo_url}
-              alt="Company logo"
-              className="mb-6 h-12 object-contain"
-            />
+          {(brand?.logo_url || brand?.company_name) && (
+            <div className="mb-6 flex items-center gap-3">
+              {brand?.logo_url && (
+                <img
+                  src={brand.logo_url}
+                  alt="Company logo"
+                  className="h-12 object-contain"
+                />
+              )}
+              {brand?.company_name && (
+                <span className="text-lg font-semibold text-gray-700">
+                  {brand.company_name}
+                </span>
+              )}
+            </div>
           )}
           <h1 className="text-4xl font-bold text-gray-900">
             {proposal.title}
@@ -208,8 +217,9 @@ export default async function ProposalPreviewPage({
         {/* Footer */}
         <div className="mt-16 border-t pt-8 text-center text-sm text-gray-400">
           <p>
-            This proposal was generated with ProposalAI. Confidential and
-            intended for the recipient only.
+            {brand?.company_name
+              ? `${brand.company_name} — Confidential and intended for the recipient only.`
+              : "This proposal was generated with ProposalAI. Confidential and intended for the recipient only."}
           </p>
         </div>
       </div>

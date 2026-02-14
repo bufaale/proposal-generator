@@ -4,6 +4,7 @@ import {
   Page,
   Text,
   View,
+  Image,
   StyleSheet,
   Font,
 } from "@react-pdf/renderer";
@@ -41,6 +42,21 @@ function createStyles(primaryColor: string, secondaryColor: string) {
       alignItems: "center",
       height: "100%",
       paddingHorizontal: 50,
+    },
+    coverLogo: {
+      width: 120,
+      height: 60,
+      objectFit: "contain" as const,
+      marginBottom: 24,
+    },
+    coverCompanyName: {
+      fontSize: 14,
+      fontWeight: 700,
+      color: secondaryColor,
+      textAlign: "center",
+      marginBottom: 32,
+      letterSpacing: 1,
+      textTransform: "uppercase" as const,
     },
     coverTitle: {
       fontSize: 32,
@@ -105,6 +121,17 @@ export function ProposalPDF({ proposal }: { proposal: Proposal }) {
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.coverPage}>
+          {proposal.brand_settings?.logo_url && (
+            <Image
+              src={proposal.brand_settings.logo_url}
+              style={styles.coverLogo}
+            />
+          )}
+          {proposal.brand_settings?.company_name && (
+            <Text style={styles.coverCompanyName}>
+              {proposal.brand_settings.company_name}
+            </Text>
+          )}
           <Text style={styles.coverTitle}>{proposal.title}</Text>
           <Text style={styles.coverSubtitle}>
             Prepared for{" "}
@@ -174,7 +201,9 @@ export function ProposalPDF({ proposal }: { proposal: Proposal }) {
           </View>
         )}
 
-        <Text style={styles.footer}>Generated with ProposalAI</Text>
+        <Text style={styles.footer}>
+          {proposal.brand_settings?.company_name || "Generated with ProposalAI"}
+        </Text>
       </Page>
     </Document>
   );

@@ -51,7 +51,7 @@ export async function POST(req: Request) {
   const { data: profile } = await supabase
     .from("profiles")
     .select(
-      "subscription_plan, primary_color, secondary_color, company_logo_url",
+      "subscription_plan, primary_color, secondary_color, company_logo_url, company_name",
     )
     .eq("id", user.id)
     .single();
@@ -110,6 +110,7 @@ export async function POST(req: Request) {
       pricing_data: generated.pricing_data,
       brand_settings: {
         logo_url: profile?.company_logo_url ?? undefined,
+        company_name: profile?.company_name ?? undefined,
         primary_color: profile?.primary_color || "#2563eb",
         secondary_color: profile?.secondary_color || "#1e40af",
       },
