@@ -42,10 +42,10 @@ export async function generateProposal(
   templateSections: TemplateSection[],
   aiModel: "haiku" | "sonnet",
 ): Promise<GeneratedProposal> {
-  const modelId =
-    aiModel === "sonnet"
-      ? "claude-sonnet-4-5-20250929"
-      : "claude-haiku-4-5-20251001";
+  // Force Haiku for all plans — Sonnet + generateObject exceeds Vercel Hobby 60s timeout
+  // TODO: Switch to streamObject + Vercel Pro for Sonnet support
+  const modelId = "claude-haiku-4-5-20251001";
+  void aiModel;
 
   const systemPrompt = `You are a professional proposal writer for freelancers and agencies.
 Generate a complete, polished business proposal based on the project brief.
