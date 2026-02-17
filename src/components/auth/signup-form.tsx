@@ -22,6 +22,7 @@ export function SignupForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [acceptedTos, setAcceptedTos] = useState(false);
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -133,7 +134,13 @@ export function SignupForm() {
                   minLength={6}
                 />
               </div>
-              <Button type="submit" className="w-full" disabled={loading}>
+              <div className="flex items-start space-x-2">
+                <input type="checkbox" id="tos" checked={acceptedTos} onChange={(e) => setAcceptedTos(e.target.checked)} className="mt-1 h-4 w-4 rounded border border-input accent-primary" />
+                <label htmlFor="tos" className="text-sm text-muted-foreground leading-relaxed">
+                  I agree to the{" "}<a href="/terms" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Terms of Service</a>{" "}and{" "}<a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Privacy Policy</a>
+                </label>
+              </div>
+              <Button type="submit" className="w-full" disabled={!acceptedTos || loading}>
                 {loading ? "Creating account..." : "Sign up"}
               </Button>
             </form>
