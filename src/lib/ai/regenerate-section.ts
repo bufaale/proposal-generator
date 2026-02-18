@@ -2,6 +2,7 @@ import { generateObject } from "ai";
 import { anthropic } from "@ai-sdk/anthropic";
 import { z } from "zod";
 import type { ProposalSection } from "@/types/database";
+import { sanitizeAiInput } from "@/lib/security/ai-safety";
 
 const sectionSchema = z.object({
   content: z.string().describe("Regenerated section content in markdown"),
@@ -20,17 +21,23 @@ export async function regenerateSection(
       ? "claude-sonnet-4-5-20250929"
       : "claude-haiku-4-5-20251001";
 
+  // Sanitize all user-provided data
+  const safeSectionTitle = sanitizeAiInput(sectionTitle);
+  const safePromptHint = sanitizeAiInput(promptHint);
+  const safeUserInstructions = userInstructions ? sanitizeAiInput(userInstructions) : "";
+
   const context = otherSections
-    .map((s) => `## ${s.title}\n${s.content}`)
+    .map((s) => `## ${sanitizeAiInput(s.title)}\n${sanitizeAiInput(s.content)}`)
     .join("\n\n");
 
-  const prompt = `Regenerate the "${sectionTitle}" section of a business proposal.
+  const prompt = `Regenerate the "${safeSectionTitle}" section of a business proposal.
 
-Context from other sections:
+<proposal_context>
 ${context}
+</proposal_context>
 
-Section purpose: ${promptHint}
-${userInstructions ? `\nUser instructions: ${userInstructions}` : ""}
+Section purpose: ${safePromptHint}
+${safeUserInstructions ? `\n<user_instructions>\n${safeUserInstructions}\n</user_instructions>` : ""}
 
 Write 150-400 words in professional markdown. Be specific, not generic.`;
 
@@ -40,6 +47,7 @@ Write 150-400 words in professional markdown. Be specific, not generic.`;
     system:
       "You are a professional proposal writer. Regenerate one section of an existing proposal, keeping it consistent with the other sections.",
     prompt,
+    maxOutputTokens: 2000,
   });
 
   return object.content;
