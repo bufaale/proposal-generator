@@ -49,7 +49,7 @@ export const pricingPlans: PricingPlan[] = [
     id: "pro",
     name: "Pro",
     description: "For active freelancers",
-    price: { monthly: 29, yearly: 290 },
+    price: { monthly: 19, yearly: 190 },
     stripePriceId: {
       monthly: (process.env.NEXT_PUBLIC_STRIPE_PRO_MONTHLY_PRICE_ID || "").trim(),
       yearly: (process.env.NEXT_PUBLIC_STRIPE_PRO_YEARLY_PRICE_ID || "").trim(),
@@ -82,7 +82,7 @@ export const pricingPlans: PricingPlan[] = [
     id: "business",
     name: "Business",
     description: "For agencies and power users",
-    price: { monthly: 99, yearly: 990 },
+    price: { monthly: 69, yearly: 690 },
     stripePriceId: {
       monthly: (process.env.NEXT_PUBLIC_STRIPE_BUSINESS_MONTHLY_PRICE_ID || "").trim(),
       yearly: (process.env.NEXT_PUBLIC_STRIPE_BUSINESS_YEARLY_PRICE_ID || "").trim(),

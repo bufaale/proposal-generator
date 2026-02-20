@@ -7,22 +7,24 @@ export function Hero() {
     <section className="relative overflow-hidden py-24 sm:py-32">
       <div className="mx-auto max-w-4xl px-6 text-center">
         <Badge variant="secondary" className="mb-4">
-          AI-powered proposals for freelancers
+          AI generates complete proposals — no more template editing
         </Badge>
         <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-          Create Professional Proposals in Minutes with{" "}
-          <span className="text-primary">AI</span>
+          Describe Your Project.{" "}
+          <span className="text-primary">Get a Complete Proposal.</span>
         </h1>
         <p className="mt-6 text-lg leading-8 text-muted-foreground">
-          Generate, customize, and send stunning proposals. Track engagement
-          and close more deals.
+          AI generates scope, pricing, timeline, and terms from your project
+          brief. Proposify and PandaDoc make you fill templates manually.
+          ProposalForge creates the entire proposal for you — starting at
+          $19/mo.
         </p>
         <div className="mt-10 flex items-center justify-center gap-4">
           <Button size="lg" asChild>
             <Link href="/signup">Start Creating Proposals</Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <Link href="#features">See How It Works</Link>
+            <Link href="#comparison">See How We Compare</Link>
           </Button>
         </div>
         <p className="mt-4 text-sm text-muted-foreground">
