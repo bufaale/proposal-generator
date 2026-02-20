@@ -13,6 +13,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { PlusCircle } from "lucide-react";
+import { CrossPromoBanner } from "@/components/dashboard/cross-promo-banner";
 import type { Proposal } from "@/types/database";
 
 export default async function DashboardPage() {
@@ -126,6 +127,9 @@ export default async function DashboardPage() {
           )}
         </CardContent>
       </Card>
+
+      {/* Cross-Promotion */}
+      <CrossPromoBanner />
     </div>
   );
 }
