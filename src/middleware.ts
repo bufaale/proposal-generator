@@ -5,6 +5,14 @@ import { applyMiddlewareRateLimit } from "@/lib/security/middleware-rate-limit";
 import { applyWaf } from "@/lib/security/waf";
 
 export async function middleware(request: NextRequest) {
+  // /auth/* paths must skip updateSession() — calling getUser() rotates
+  // the auth cookie and drops the PKCE code_verifier before /auth/confirm
+  // can exchange the OAuth code. See: project_supabase_oauth_middleware_pkce_trap.md
+  // Anti-pattern fix per ~/.claude/rules/common/portfolio-app-anti-patterns.md
+  if (request.nextUrl.pathname.startsWith("/auth/")) {
+    return setSecurityHeaders(NextResponse.next(), request);
+  }
+
   const ua = request.headers.get("user-agent") ?? "";
   if (!ua && request.nextUrl.pathname.startsWith("/api/")) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
